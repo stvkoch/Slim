@@ -181,7 +181,9 @@ class Slim
         $this->request = new \Slim\Http\Request($this->environment);
         $this->response = new \Slim\Http\Response();
         $this->router = new \Slim\Router();
-        $this->middleware = array($this);
+
+         // Init linked lists of middlewares
+        $this->middleware = $this;
         $this->add(new \Slim\Middleware\Flash());
         $this->add(new \Slim\Middleware\MethodOverride());
 
@@ -1148,8 +1150,8 @@ class Slim
     public function add(\Slim\Middleware $newMiddleware)
     {
         $newMiddleware->setApplication($this);
-        $newMiddleware->setNextMiddleware($this->middleware[0]);
-        array_unshift($this->middleware, $newMiddleware);
+        $newMiddleware->setNextMiddleware($this->middleware);
+        $this->middleware = $newMiddleware;
     }
 
     /********************************************************************************
@@ -1171,7 +1173,7 @@ class Slim
         $this->add(new \Slim\Middleware\PrettyExceptions());
 
         //Invoke middleware and application stack
-        $this->middleware[0]->call();
+        $this->middleware->call();
 
         //Fetch status, header, and body
         list($status, $header, $body) = $this->response->finalize();
