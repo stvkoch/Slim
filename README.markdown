@@ -1,6 +1,6 @@
 # Slim Framework
 
-[![Build Status](https://secure.travis-ci.org/codeguy/Slim.png)](http://travis-ci.org/codeguy/Slim)
+[![Build Status Slim fork stvkoch by travis-ci](https://api.travis-ci.org/stvkoch/Slim.png)](http://travis-ci.org/stvkoch/Slim)
 
 Slim is a PHP micro framework that helps you quickly write simple yet powerful web applications and APIs.
 Slim is easy to use for both beginners and professionals. Slim favors cleanliness over terseness and common cases
